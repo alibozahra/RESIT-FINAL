@@ -6,7 +6,7 @@ function NavBar() {
   const isLoggedIn = !!localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // ✅ Redirect to Login if Not Logged In
+  // Redirect to Login if Not Logged In
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/login');
@@ -18,7 +18,7 @@ function NavBar() {
     localStorage.removeItem('user');
     localStorage.removeItem('cart');
     alert('Logged out successfully!');
-    navigate('/login'); // ✅ Redirect to Login Page
+    navigate('/login'); // Redirect to Login Page
   };
 
   return (

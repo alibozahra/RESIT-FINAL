@@ -10,7 +10,7 @@ const hardcodedProducts = [
 function Products() {
   const [products, setProducts] = useState(hardcodedProducts);
 
-  // ✅ Function to Add Product to Cart & Update UI
+  // Function to Add Product to Cart & Update UI
   const addToCart = (product) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -23,7 +23,7 @@ function Products() {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // ✅ Update the Product Quantity in UI
+    // Update the Product Quantity in UI
     setProducts(products.map(p => 
       p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
     ));
@@ -39,7 +39,7 @@ function Products() {
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
-            <p>In Cart: {product.quantity}</p> {/* ✅ Show Updated Quantity */}
+            <p>In Cart: {product.quantity}</p> {/* Show Updated Quantity */}
             <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
         ))}

@@ -11,7 +11,7 @@ function Admin() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // ✅ Redirect if user is not admin
+  // Redirect if user is not admin
   useEffect(() => {
     if (!user || !user.isAdmin) {
       alert('Access denied. Admins only.');
@@ -19,7 +19,7 @@ function Admin() {
     }
   }, [user, navigate]);
 
-  // ✅ Fetch Products
+  // Fetch Products
   useEffect(() => {
     fetch('http://localhost:5001/products')
       .then(response => response.json())
@@ -27,7 +27,7 @@ function Admin() {
       .catch(err => console.error('Error fetching products:', err));
   }, []);
 
-  // ✅ Add Product
+  // Add Product
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
@@ -51,7 +51,7 @@ function Admin() {
     }
   };
 
-  // ✅ Remove Product
+  // Remove Product
   const handleRemoveProduct = async (productId) => {
     try {
       const response = await fetch(`http://localhost:5001/admin/remove-product/${productId}`, {

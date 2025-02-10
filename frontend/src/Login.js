@@ -9,7 +9,7 @@ function Login() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      navigate('/home'); // ✅ Redirect to home if already logged in
+      navigate('/home'); // Redirect to home if already logged in
     }
   }, []);
 

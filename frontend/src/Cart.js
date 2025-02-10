@@ -6,25 +6,25 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
 
-  // ✅ Load Cart Items from LocalStorage
+  // Load Cart Items from LocalStorage
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(storedCart);
   }, []);
 
-  // ✅ Remove Item from Cart
+  // Remove Item from Cart
   const removeFromCart = (productId) => {
     const updatedCart = cartItems.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  // ✅ Calculate Total Price
+  // Calculate Total Price
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
   };
 
-  // ✅ Proceed to Checkout
+  // Proceed to Checkout
   const proceedToCheckout = () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty! Add items before proceeding.");

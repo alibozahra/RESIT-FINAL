@@ -9,13 +9,13 @@ function Checkout() {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
 
-  // ✅ Load Cart Items from LocalStorage
+  // Load Cart Item
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(storedCart);
   }, []);
 
-  // ✅ Handle Checkout Process
+  // Handle Checkout Process
   const handleCheckout = async (e) => {
     e.preventDefault();
 
@@ -57,8 +57,8 @@ function Checkout() {
       }
 
       alert('Order placed successfully!');
-      localStorage.removeItem('cart'); // ✅ Clear cart after successful order
-      navigate('/'); // ✅ Redirect to home page
+      localStorage.removeItem('cart'); // Clear cart after successful order
+      navigate('/'); // Redirect to home page
 
     } catch (error) {
       console.error('Checkout error:', error);

@@ -15,7 +15,7 @@ const db = new sqlite3.Database('database.db', (err) => {
   else console.log('Connected to SQLite3 database');
 });
 
-// ✅ Ensure All Tables Exist Before Insert
+// Ensure All Tables Exist Before Inserting Values
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
@@ -25,7 +25,7 @@ db.serialize(() => {
       isAdmin INTEGER DEFAULT 0
     )
   `, () => {
-    // ✅ Insert Default Admin
+    // Admin Credentials
     const hashedPassword = bcrypt.hashSync('admin123', 10);
     db.run(`
       INSERT INTO users (email, password, isAdmin) VALUES ('admin@electrofix.com', ?, 1)
@@ -42,12 +42,12 @@ db.serialize(() => {
       image TEXT
     )
   `, () => {
-    // ✅ Insert Default Products (Without Quantity)
+    // Insert Default Products 
     db.run(`
       INSERT INTO products (name, description, price, image) VALUES
-      ('iPhone 15', 'Latest Apple iPhone with A16 Bionic chip.', 999.99, 'iphone15.jpg'),
-      ('PlayStation 5', 'Sony PlayStation 5 gaming console.', 499.99, 'ps5.jpg'),
-      ('MacBook Pro', 'Apple MacBook Pro with M2 chip.', 1299.99, 'macbookpro.jpg')
+      ('iPhone 15', 'Latest Apple iPhone with A16 Bionic chip.', 999.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRMASExxyZ1yU02ty84s0zg5GTGKWG_ysugQ&s'),
+      ('PlayStation 5', 'Sony PlayStation 5 gaming console.', 499.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCEUgvB3-uC_5YYaw8Vupf9FXi8ZMGSgoWQ&s'),
+      ('MacBook Pro', 'Apple MacBook Pro with M2 chip.', 1299.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHlQ2rrMUifjToqz89YatbsEoUsX8qIHvLeA&s')
       ON CONFLICT(name) DO UPDATE SET description=excluded.description, price=excluded.price, image=excluded.image;
     `);
   });
@@ -65,7 +65,7 @@ db.serialize(() => {
   `);
 });
 
-// ✅ Signup Route
+// Signup Route
 app.post('/signup', (req, res) => {
   const { email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 10);
@@ -76,7 +76,7 @@ app.post('/signup', (req, res) => {
   });
 });
 
-// ✅ Login Route
+// Login Route
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -93,7 +93,7 @@ app.post('/login', (req, res) => {
   });
 });
 
-// ✅ Fetch Products
+// Fetch Products
 app.get('/products', (req, res) => {
   db.all('SELECT * FROM products', [], (err, rows) => {
     if (err) return res.status(500).json({ message: 'Database error' });
@@ -101,12 +101,12 @@ app.get('/products', (req, res) => {
   });
 });
 
-// ✅ Add Product to Cart (Frontend Handles Cart in Local Storage)
+// Add Product to Cart (Handled in local frontend storage)
 app.post('/cart/add', (req, res) => {
   res.json({ message: 'Product added to cart' });
 });
 
-// ✅ Checkout Route (Stores Orders in Database)
+// Checkout Route (Stores Orders in Database)
 app.post('/checkout', (req, res) => {
   const { user_id, name, address, payment_method, cartItems } = req.body;
 

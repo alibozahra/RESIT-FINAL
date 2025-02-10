@@ -57,9 +57,9 @@ db.serialize(() => {
     ON CONFLICT(name) DO NOTHING;
   `, 
   [
-    'iPhone 15', 'Latest Apple iPhone with A16 Bionic chip.', 999.99, 'iphone15.jpg',
-    'PlayStation 5', 'Sony PlayStation 5 gaming console.', 499.99, 'ps5.jpg',
-    'MacBook Pro', 'Apple MacBook Pro with M2 chip.', 1299.99, 'macbookpro.jpg'
+    'iPhone 15', 'Latest Apple iPhone with A16 Bionic chip.', 999.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRMASExxyZ1yU02ty84s0zg5GTGKWG_ysugQ&s',
+    'PlayStation 5', 'Sony PlayStation 5 gaming console.', 499.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCEUgvB3-uC_5YYaw8Vupf9FXi8ZMGSgoWQ&s',
+    'MacBook Pro', 'Apple MacBook Pro with M2 chip.', 1299.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHlQ2rrMUifjToqz89YatbsEoUsX8qIHvLeA&s'
   ], 
   (err) => {
     if (err) console.error('Error inserting default products:', err.message);

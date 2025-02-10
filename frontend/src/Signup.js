@@ -9,7 +9,7 @@ function Signup() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      navigate('/home'); // ✅ Redirect to home if already logged in
+      navigate('/home'); //  Redirect to home if already logged in
     }
   }, []);
 
@@ -30,7 +30,7 @@ function Signup() {
       }
 
       alert('Signup successful! Please log in.');
-      navigate('/login'); // ✅ Redirect to login after signup
+      navigate('/login'); // Redirect to login after signup
 
     } catch (err) {
       setError(err.message);
